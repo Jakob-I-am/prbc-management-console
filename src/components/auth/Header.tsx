@@ -22,8 +22,10 @@ export default function Header({ label }: HeaderProps) {
         className='object-contain'
         priority
       />
-      <h1 className={cn('text-3xl font-semibold', poppins.className)}>
-        Console
+      <h1
+        className={cn('text-3xl font-semibold text-center', poppins.className)}
+      >
+        Parkes Railway Bowling Club
       </h1>
       <p className='text-muted-foreground text-sm'>{label}</p>
     </div>

@@ -38,10 +38,12 @@ export default function LoginForm() {
     setSuccess('');
 
     startTransition(() => {
-      login(values).then((data) => {
-        setError(data.error);
-        setSuccess(data.success);
-      });
+      login({ ...values, username: values.username.toLowerCase() }).then(
+        (data) => {
+          setError(data?.error);
+          setSuccess(data?.success);
+        }
+      );
     });
   };
 
@@ -85,7 +87,7 @@ export default function LoginForm() {
                     <Input
                       {...field}
                       disabled={isPending}
-                      type='text'
+                      type='password'
                       placeholder='*********'
                     />
                   </FormControl>
