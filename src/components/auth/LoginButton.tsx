@@ -7,7 +7,7 @@ interface LoginButtonProps {
   asChild?: boolean;
 }
 
-export default function LoginButton({ children, asChild }: LoginButtonProps) {
+export default function LoginButton({ children }: LoginButtonProps) {
   const router = useRouter();
 
   return (

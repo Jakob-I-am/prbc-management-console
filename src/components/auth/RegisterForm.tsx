@@ -49,8 +49,8 @@ export default function RegisterForm() {
   return (
     <CardWrapper
       headerLabel='Add a new Admin'
-      backButtonLabel=''
-      backButtonHref=''
+      backButtonLabel='Go Back'
+      backButtonHref='/dashboard'
     >
       <Form {...form}>
         <form

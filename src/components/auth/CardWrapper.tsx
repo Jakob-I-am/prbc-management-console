@@ -3,10 +3,12 @@
 import {
   Card,
   CardContent,
-  CardHeader,
   CardFooter,
+  CardHeader,
 } from '@/components/ui/card';
 import Header from '@/components/auth/Header';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface CardWrapperProps {
   children: React.ReactNode;
@@ -27,6 +29,11 @@ export default function CardWrapper({
         <Header label={headerLabel} />
       </CardHeader>
       <CardContent>{children}</CardContent>
+      <CardFooter>
+        <Button variant='link'>
+          <Link href={backButtonHref}>{backButtonLabel}</Link>
+        </Button>
+      </CardFooter>
     </Card>
   );
 }

@@ -26,7 +26,7 @@ export async function incrementLoginCount(username: string) {
       where: { username },
       data: { loginCount: { increment: 1 } },
     });
-  } catch (error) {
+  } catch {
     return null;
   }
 }
