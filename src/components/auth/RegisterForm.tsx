@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useState, useTransition } from 'react';
 
 import CardWrapper from '@/components/auth/CardWrapper';
-import { loginSchema, registerSchema } from '@/schemas';
+import { registerSchema } from '@/schemas';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -19,7 +19,7 @@ import {
 import { Input } from '@/components/ui/input';
 import FormError from '@/components/FormError';
 import FormSuccess from '@/components/FormSuccess';
-import { login } from '@/actions/login';
+import { register } from '@/actions/register';
 
 export default function RegisterForm() {
   const [error, setError] = useState<string | undefined>('');
@@ -30,15 +30,16 @@ export default function RegisterForm() {
     defaultValues: {
       username: '',
       password: '',
+      name: '',
     },
   });
 
-  const onSubmit = (values: z.infer<typeof loginSchema>) => {
+  const onSubmit = (values: z.infer<typeof registerSchema>) => {
     setError('');
     setSuccess('');
 
     startTransition(() => {
-      login(values).then((data) => {
+      register(values).then((data) => {
         setError(data.error);
         setSuccess(data.success);
       });
@@ -47,7 +48,7 @@ export default function RegisterForm() {
 
   return (
     <CardWrapper
-      headerLabel='Welcome Back'
+      headerLabel='Register'
       backButtonLabel=''
       backButtonHref=''
     >
@@ -57,6 +58,24 @@ export default function RegisterForm() {
           className='space-y-6'
         >
           <div className='space-y-4'>
+            <FormField
+              control={form.control}
+              name='name'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      disabled={isPending}
+                      type='text'
+                      placeholder='John Citizen'
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name='username'
@@ -101,7 +120,7 @@ export default function RegisterForm() {
             type='submit'
             className='w-full'
           >
-            {isPending ? 'Logging in...' : 'Login'}
+            {isPending ? 'Registering...' : 'Register'}
           </Button>
         </form>
       </Form>
