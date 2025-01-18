@@ -1,19 +1,15 @@
-import { auth, signOut } from '@/auth';
-import { Button } from '@/components/ui/button';
+import { getCurrentUser } from '@/lib/auth';
 
 export default async function DashboardPage() {
-  const session = await auth();
+  const user = await getCurrentUser();
+
+  if (!user) return null;
+
   return (
-    <div>
-      {JSON.stringify(session)}
-      <form
-        action={async () => {
-          'use server';
-          await signOut();
-        }}
-      >
-        <Button type='submit'>Sign Out</Button>
-      </form>
+    <div className='w-full'>
+      {JSON.stringify(user)}
+
+      <div>{user.loginCount <= 1 ? 'Change password' : 'Carry on'}</div>
     </div>
   );
 }
