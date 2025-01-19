@@ -77,7 +77,7 @@ export async function deleteManyMessages(id_list: string[]) {
   );
 
   const mutation = gql`
-    mutation deleteContacts($id_list: [ID]) {
+    mutation deleteContacts($id_list: [ID]!) {
       deleteManyContactsConnection(where: { id_in: $id_list }) {
         edges {
           node {

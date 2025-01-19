@@ -1,7 +1,7 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-import { DeleteIcon, MoreHorizontal } from 'lucide-react';
+import { MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
 
 import {
@@ -50,8 +50,6 @@ export const columns: ColumnDef<Message>[] = [
         />
       </div>
     ),
-    enableSorting: false,
-    enableHiding: false,
   },
   {
     accessorKey: 'id',
@@ -75,8 +73,6 @@ export const columns: ColumnDef<Message>[] = [
         </Badge>
       </div>
     ),
-    enableSorting: true,
-    enableHiding: true,
   },
   {
     accessorKey: 'name',
@@ -88,8 +84,6 @@ export const columns: ColumnDef<Message>[] = [
         <p>{row.getValue('name')}</p>
       </div>
     ),
-    enableSorting: true,
-    enableHiding: true,
   },
   {
     accessorKey: 'phoneNumber',
@@ -103,8 +97,6 @@ export const columns: ColumnDef<Message>[] = [
         <p>{row.getValue('phoneNumber')}</p>
       </div>
     ),
-    enableSorting: true,
-    enableHiding: true,
   },
   {
     accessorKey: 'message',
@@ -134,7 +126,8 @@ export const columns: ColumnDef<Message>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align='end'>
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>Update Status</DropdownMenuLabel>
+            <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() =>
                 updateStatus({
@@ -155,15 +148,18 @@ export const columns: ColumnDef<Message>[] = [
             >
               Complete
             </DropdownMenuItem>
-
             <DropdownMenuSeparator />
-
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuSeparator />
             <DropdownMenuItem>
               <Link href={`/dashboard/${row.getValue('id')}`}>
                 View Message
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => deleteMessage(row.getValue('id'))}>
+            <DropdownMenuItem
+              className='text-red-500'
+              onClick={() => deleteMessage(row.getValue('id'))}
+            >
               Delete
             </DropdownMenuItem>
           </DropdownMenuContent>
