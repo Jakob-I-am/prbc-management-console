@@ -1,6 +1,6 @@
 'use client';
 
-import { Calendar, Home, Inbox, Search, Settings } from 'lucide-react';
+import { Calendar, Inbox, Search, Settings } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
@@ -30,7 +30,7 @@ const items = [
   },
   {
     title: 'Nominations',
-    url: '#',
+    url: '/nominations',
     icon: Calendar,
   },
   {
